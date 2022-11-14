@@ -1,9 +1,16 @@
 const vehicleTemplateText = document.querySelector('.vehicleTemplate');
 const userTemplate = Handlebars.compile(vehicleTemplateText.innerText);
 
+const colorsTemplateSource = document.querySelector('.colorsTemplate');
+const colorsTemplate = Handlebars.compile(colorsTemplateSource.innerHTML);
+
+const brandsTemplateSource = document.querySelector('.brandsTemplate');
+const brandsTemplate = Handlebars.compile(brandsTemplateSource.innerHTML);
+
+
 const carsElem = document.querySelector('.cars');
-const makeElem = document.querySelector('.make');
-const colorElem = document.querySelector('.color');
+// const makeElem = document.querySelector('.make');
+// const colorElem = document.querySelector('.colors');
 
 
 
@@ -18,26 +25,22 @@ axios
 
     });
 
-    axios
-    .get("https://api-tutor.herokuapp.com/v1/colors")
-    .then(result => {
-        const color = result.data;
-        
-        colorElem.innerHTML = userTemplate({
-            color
-        });
+   axios.get('https://api-tutor.herokuapp.com/v1/colors')
+  .then(function (response) {
 
-    });
+    const colorsElem = document.querySelector('.colors');
+    colorsElem.innerHTML = colorsTemplate({
+        colors: response.data
+    })
+  });
 
-     axios
-    .get("https://api-tutor.herokuapp.com/v1/make")
-    .then(result => {
-        const brand = result.data;
-        
-        makeElem.innerHTML = userTemplate({
-           brand
-        });
+   axios.get('https://api-tutor.herokuapp.com/v1/makes')
+  .then(function (response) {
 
-    });
+     const brandsElem = document.querySelector('.brands');
+     brandsElem.innerHTML = brandsTemplate({
+         brands: response.data
+     })
+  });
 
     
