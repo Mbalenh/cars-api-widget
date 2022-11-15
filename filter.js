@@ -33,7 +33,7 @@ axios
 
 const submit = document.querySelector('.submit')
 
-// const filter = document.querySelector('.filter')
+const filterElem = document.querySelector('.filter')
 
 
 submit.addEventListener('click', function () {
@@ -42,9 +42,9 @@ if (brandsElem.value && color.value) {
         axios
             .get("https://api-tutor.herokuapp.com/v1/cars/make/" + brandsElem.value + "/color/" + color.value)
             .then(function (response) {
-            	const filter = document.querySelector('.filter')
+            	// const filter = document.querySelector('.filter')
                 const allCarsfilter = response.data;
-                filter.innerHTML = makeTemplate({
+                filterElem.innerHTML = makeTemplate({
                     allCarsfilter
 
                 })
@@ -54,9 +54,9 @@ if (brandsElem.value && color.value) {
         axios
             .get("https://api-tutor.herokuapp.com/v1/cars/color/" + color.value)
             .then(function (response) {
-            	const filter = document.querySelector('.filter')
+            	// const filter = document.querySelector('.filter')
                 const allCarsfilter = response.data;
-                filter.innerHTML = makeTemplate({
+                filterElem.innerHTML = makeTemplate({
                     allCarsfilter
 
                 })
@@ -66,16 +66,17 @@ if (brandsElem.value && color.value) {
         axios
             .get("https://api-tutor.herokuapp.com/v1/cars/make/" + brandsElem.value)
             .then(function (response) {
-            	const filter = document.querySelector('.filter')
+            	// const filter = document.querySelector('.filter')
                 const allCarsfilter = response.data;
-                filter.innerHTML = makeTemplate({
+                filterElem.innerHTML = makeTemplate({
                     allCarsfilter
 
                 })
 
             })
     } else {
-        filter.innerHTML = "Please choose an option for color & or brand "
+        // const filter = document.querySelector('.filter')
+        filterElem.innerHTML = "Please choose an option for color & or brand "
     }
 
 
